@@ -1,0 +1,16 @@
+h2 View game
+table.table.table-striped
+  thead
+    tr
+      th Key
+      th Value
+  tbody
+    tr
+      th scope="row" ID
+      td = @game.id
+    tr
+      th scope="row" Name
+      td = @game.name
+    tr
+      th scope="row" Send from
+      td = @game.send_from

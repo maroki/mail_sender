@@ -1,0 +1,16 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  timeout: 5000
+  username: username
+  password: password
+  host: localhost
+
+development:
+  <<: *default
+  database: game_mails_db
+
+test:
+  <<: *default
+  database: game_mails_test_db

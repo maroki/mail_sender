@@ -1,0 +1,45 @@
+h1 Mailings List
+= link_to 'New Mailing', new_mailing_path, class: 'btn btn-success pull-right'
+br
+div
+  - if @mailing_templates.present?
+    table.table.table-striped
+      thead
+        tr
+          th #
+          th Game
+          th Subject
+          th Planing Start Time
+          th Status
+          th Started At
+          th Finished At
+          th Filters
+          th Actions
+
+      tbody
+        - @mailing_templates.each do |m_t|
+          tr
+            th scope="row" = m_t.id
+            td = m_t.game.try(:name)
+            td = m_t.subject
+            td = m_t.planing_start_time_at.strftime("%d-%m-%Y at %H:%M")
+            td = m_t.human_status
+            td = m_t.started_at.present? ? m_t.started_at.strftime("%d-%m-%Y at %H:%M") : '-'
+            td = m_t.finished_at.present? ? m_t.finished_at.strftime("%d-%m-%Y at %H:%M") : '-'
+            td
+              - unless m_t.filters == '{}'
+                - m_t.filters.each do |k, v|
+                  - if v.present?
+                    = "#{k.humanize}: #{v}"
+                    br
+            td
+              span = link_to 'View', mailing_path(m_t)
+              - if m_t.draft?
+                '
+                span = link_to 'Edit', edit_mailing_path(m_t)
+                '
+                span = link_to 'Delete', mailing_path(m_t), method: :delete, data: { confirm: 'Are you sure?' }
+    .text-center
+      = paginate @mailing_templates
+  - else
+    p No created mailings

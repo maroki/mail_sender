@@ -1,0 +1,29 @@
+h1 Game List
+= link_to 'New Game', new_game_path, class: 'btn btn-success pull-right'
+br
+div
+  - if @games.present?
+    table.table.table-striped
+      thead
+        tr
+          th #
+          th Name
+          th Send from
+          th Actions
+
+      tbody
+        - @games.each do |game|
+          tr
+            th scope="row" = game.id
+            td = game.name
+            td = game.send_from
+            td
+              span = link_to 'View', game_path(game)
+              '
+              span = link_to 'Edit', edit_game_path(game)
+              '
+              span = link_to 'Delete', game_path(game), method: :delete, data: { confirm: 'Are you sure?' }
+    .text-center
+      = paginate @games
+  - else
+    p No created games

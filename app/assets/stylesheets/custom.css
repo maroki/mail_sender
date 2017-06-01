@@ -1,0 +1,11 @@
+body {
+  padding-top: 100px;
+}
+
+}
+.navbar-nav > span {
+  display: block;
+  padding-top: 15px;
+  margin-right: 5px;
+  margin-left: 5px;
+}

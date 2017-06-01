@@ -1,0 +1,9 @@
+= simple_form_for @user do |f|
+  = f.input :name
+  = f.input :game_id, as: :select, collection: Game.all
+  = f.input :email
+  = f.input :level
+  = f.input :last_visit_at
+  = f.input :payed
+
+  = f.submit 'Save', class: 'btn btn-default'

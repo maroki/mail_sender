@@ -1,0 +1,25 @@
+h2 View user
+table.table.table-striped
+  thead
+    tr
+      th Key
+      th Value
+  tbody
+    tr
+      th scope="row" ID
+      td = @user.id
+    tr
+      th scope="row" Name
+      td = @user.name
+    tr
+      th scope="row" Email
+      td = @user.email
+    tr
+      th scope="row" Level
+      td = @user.level
+    tr
+      th scope="row" Payed
+      td = @user.payed
+    tr
+      th scope="row" Last visit at
+      td = @user.last_visit_at

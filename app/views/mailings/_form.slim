@@ -1,0 +1,18 @@
+= simple_form_for @mailing_template, url: @mailing_template.persisted? ? mailing_path(@mailing_template) : mailings_path(@mailing_template), method: @mailing_template.persisted? ? (:patch) : (:post) do |f|
+  = f.input :game_id, as: :select, collection: Game.all
+  = f.input :subject
+  = f.input :text, as: :text, input_html: { class: 'ckeditor' }
+  = f.input :planing_start_time_at
+  .row
+    h3 Filters
+  = f.input :payed, as: :select, collection: [['It does not matter', ''], ['YES', true], ['NO', false]],include_blank: false, required: false
+  .row
+    .col-md-6
+      = f.input :level_from, as: :numeric, required: false
+    .col-md-6
+      = f.input :level_to, as: :numeric, required: false
+
+  = f.submit 'Save', class: 'btn btn-default'
+
+javascript:
+  $('.ckeditor').ckeditor({});

@@ -1,0 +1,33 @@
+h1 User List
+= link_to 'New User', new_user_path, class: 'btn btn-success pull-right'
+br
+div
+  - if @users.present?
+    table.table.table-striped
+      thead
+        tr
+          th #
+          th Name
+          th Game
+          th Level
+          th Payed
+          th Actions
+
+      tbody
+        - @users.each do |user|
+          tr
+            th scope="row" = user.id
+            td = user.name
+            td = user.game.try(:name)
+            td = user.level
+            td = user.payed ? 'YES' : 'NO'
+            td
+              span = link_to 'View', user_path(user)
+              '
+              span = link_to 'Edit', edit_user_path(user)
+              '
+              span = link_to 'Delete', user_path(user), method: :delete, data: { confirm: 'Are you sure?' }
+    .text-center
+      = paginate @users
+  - else
+    p No created users

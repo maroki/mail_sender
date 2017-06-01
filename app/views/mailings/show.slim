@@ -1,0 +1,33 @@
+h2 View game
+- unless @mailing_template.draft?
+  h4.text-center = "Sent: #{@mailing_template.mails.count}/#{@mailing_template.users_to_send.count}"
+table.table.table-striped
+  thead
+    tr
+      th Key
+      th Value
+  tbody
+    tr
+      th scope="row" ID
+      td = @mailing_template.id
+    tr
+      th scope="row" Game
+      td = @mailing_template.game.name
+    tr
+      th scope="row" Status
+      td = @mailing_template.human_status
+    tr
+      th scope="row" Send from
+      td = @mailing_template.subject
+    tr
+      th scope="row" Text
+      td = @mailing_template.text.html_safe
+    tr
+      th scope="row" Planing start time at
+      td = @mailing_template.planing_start_time_at.strftime("%d/%m/%Y at %H:%M")
+    tr
+      th scope="row" Started at
+      td = @mailing_template.started_at.present? ? @mailing_template.started_at.strftime("%d/%m/%Y at %H:%M") : '-'
+    tr
+      th scope="row" Finished at
+      td = @mailing_template.finished_at.present? ? @mailing_template.finished_at.strftime("%d/%m/%Y at %H:%M") : '-'
